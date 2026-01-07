@@ -4,6 +4,9 @@
 # Allow README.md
 !README.md
 
+# Allow index.html for GitHub Pages
+!index.html
+
 # Allow PDF files anywhere
 !*.pdf
 !**/*.pdf
