@@ -1,0 +1,36 @@
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.nav
+*.snm
+*.vrb
+
+# Editor files
+.DS_Store
+*~
+*.swp
+*.swo
+._*
+
+# Keep PDFs and source files
+!*.pdf
+!*.tex
+!*.bib
+!*.sty
+!*.cls
+
+# Keep assets
+!assets/
+
