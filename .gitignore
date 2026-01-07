@@ -11,3 +11,6 @@
 # Allow directories (needed to access PDFs in subdirectories)
 !*/
 !.gitignore
+
+# Ignore scheduled items directory
+.scheduled/
