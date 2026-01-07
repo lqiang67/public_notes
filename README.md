@@ -1,3 +1,3 @@
 ## Notes
 
-- **[Density Ratio Estimation](https://raw.githubusercontent.com/lqiang67/public_notes/main/notes/density_ratio/density_ratio.pdf)**
+- **[Density Ratio Estimation](https://lqiang67.github.io/public_notes/notes/density_ratio/)**

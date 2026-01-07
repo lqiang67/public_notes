@@ -8,6 +8,10 @@
 !*.pdf
 !**/*.pdf
 
+# Allow HTML files for PDF viewers
+!*.html
+!**/*.html
+
 # Allow directories (needed to access PDFs in subdirectories)
 !*/
 !.gitignore
