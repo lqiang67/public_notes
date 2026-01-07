@@ -1,36 +1,13 @@
-# LaTeX build artifacts
-*.aux
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.synctex.gz
-*.toc
-*.lof
-*.lot
-*.bbl
-*.blg
-*.idx
-*.ilg
-*.ind
-*.nav
-*.snm
-*.vrb
+# Ignore everything by default
+*
 
-# Editor files
-.DS_Store
-*~
-*.swp
-*.swo
-._*
+# Allow README.md
+!README.md
 
-# Keep PDFs and source files
+# Allow PDF files anywhere
 !*.pdf
-!*.tex
-!*.bib
-!*.sty
-!*.cls
+!**/*.pdf
 
-# Keep assets
-!assets/
-
+# Allow directories (needed to access PDFs in subdirectories)
+!*/
+!.gitignore
