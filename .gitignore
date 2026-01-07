@@ -19,5 +19,9 @@
 !*/
 !.gitignore
 
+# Allow .title files for manual titles
+!.title
+!**/.title
+
 # Ignore scheduled items directory
 .scheduled/
