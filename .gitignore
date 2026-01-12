@@ -25,3 +25,6 @@
 
 # Ignore scheduled items directory
 .scheduled/
+
+# Ignore notes mapping file (internal tracking)
+.notes_mapping.json
