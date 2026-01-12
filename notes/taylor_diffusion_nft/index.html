@@ -123,38 +123,25 @@
     </div>
     <div class="pdf-container">
         <div class="loading" id="loading">Loading PDF...</div>
-        <embed class="pdf-viewer" id="pdfViewer" src="taylor_diffusion_nft.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf">
+        <iframe class="pdf-viewer" id="pdfFrame" src="taylor_diffusion_nft.pdf#view=FitH" type="application/pdf" loading="lazy">
             <p>Your browser does not support PDFs. <a href="taylor_diffusion_nft.pdf" download>Download the PDF</a> instead.</p>
-        </embed>
+        </iframe>
     </div>
     <script>
         // Hide loading indicator when PDF loads
-        var pdfViewer = document.getElementById('pdfViewer');
+        var pdfFrame = document.getElementById('pdfFrame');
         var loading = document.getElementById('loading');
         
-        // Try to detect when PDF is ready
-        if (pdfViewer) {
-            pdfViewer.addEventListener('load', function() {
-                if (loading) loading.style.display = 'none';
+        if (pdfFrame && loading) {
+            pdfFrame.addEventListener('load', function() {
+                loading.style.display = 'none';
             });
             
-            // Also try onerror to hide loading
-            pdfViewer.addEventListener('error', function() {
-                if (loading) loading.style.display = 'none';
-            });
+            // Fallback: hide loading after 5 seconds
+            setTimeout(function() {
+                loading.style.display = 'none';
+            }, 5000);
         }
-        
-        // Fallback: hide loading after 3 seconds
-        setTimeout(function() {
-            if (loading) loading.style.display = 'none';
-        }, 3000);
-        
-        // Preload hint for faster loading
-        var link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'document';
-        link.href = 'taylor_diffusion_nft.pdf';
-        document.head.appendChild(link);
     </script>
 </body>
 </html>
