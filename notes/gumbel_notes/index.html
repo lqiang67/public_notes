@@ -77,6 +77,7 @@
             background: #525252;
             padding: 20px;
             overflow: auto;
+            position: relative;
         }
         
         .pdf-viewer {
@@ -85,6 +86,15 @@
             border: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             background: white;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
         }
         
         @media (max-width: 768px) {
@@ -112,9 +122,39 @@
         </div>
     </div>
     <div class="pdf-container">
-        <iframe class="pdf-viewer" src="gumbel_notes.pdf" type="application/pdf">
+        <div class="loading" id="loading">Loading PDF...</div>
+        <embed class="pdf-viewer" id="pdfViewer" src="gumbel_notes.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf">
             <p>Your browser does not support PDFs. <a href="gumbel_notes.pdf" download>Download the PDF</a> instead.</p>
-        </iframe>
+        </embed>
     </div>
+    <script>
+        // Hide loading indicator when PDF loads
+        var pdfViewer = document.getElementById('pdfViewer');
+        var loading = document.getElementById('loading');
+        
+        // Try to detect when PDF is ready
+        if (pdfViewer) {
+            pdfViewer.addEventListener('load', function() {
+                if (loading) loading.style.display = 'none';
+            });
+            
+            // Also try onerror to hide loading
+            pdfViewer.addEventListener('error', function() {
+                if (loading) loading.style.display = 'none';
+            });
+        }
+        
+        // Fallback: hide loading after 3 seconds
+        setTimeout(function() {
+            if (loading) loading.style.display = 'none';
+        }, 3000);
+        
+        // Preload hint for faster loading
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'document';
+        link.href = 'gumbel_notes.pdf';
+        document.head.appendChild(link);
+    </script>
 </body>
 </html>

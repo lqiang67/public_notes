@@ -123,22 +123,38 @@
     </div>
     <div class="pdf-container">
         <div class="loading" id="loading">Loading PDF...</div>
-        <iframe class="pdf-viewer" id="pdfFrame" src="taylor_diffusion_nft.pdf" type="application/pdf" onload="document.getElementById('loading').style.display='none'">
+        <embed class="pdf-viewer" id="pdfViewer" src="taylor_diffusion_nft.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf">
             <p>Your browser does not support PDFs. <a href="taylor_diffusion_nft.pdf" download>Download the PDF</a> instead.</p>
-        </iframe>
+        </embed>
     </div>
     <script>
         // Hide loading indicator when PDF loads
-        document.getElementById('pdfFrame').addEventListener('load', function() {
-            var loading = document.getElementById('loading');
-            if (loading) loading.style.display = 'none';
-        });
+        var pdfViewer = document.getElementById('pdfViewer');
+        var loading = document.getElementById('loading');
         
-        // Fallback: hide loading after 5 seconds even if PDF doesn't load
+        // Try to detect when PDF is ready
+        if (pdfViewer) {
+            pdfViewer.addEventListener('load', function() {
+                if (loading) loading.style.display = 'none';
+            });
+            
+            // Also try onerror to hide loading
+            pdfViewer.addEventListener('error', function() {
+                if (loading) loading.style.display = 'none';
+            });
+        }
+        
+        // Fallback: hide loading after 3 seconds
         setTimeout(function() {
-            var loading = document.getElementById('loading');
             if (loading) loading.style.display = 'none';
-        }, 5000);
+        }, 3000);
+        
+        // Preload hint for faster loading
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'document';
+        link.href = 'taylor_diffusion_nft.pdf';
+        document.head.appendChild(link);
     </script>
 </body>
 </html>
