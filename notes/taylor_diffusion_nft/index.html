@@ -77,6 +77,7 @@
             background: #525252;
             padding: 20px;
             overflow: auto;
+            position: relative;
         }
         
         .pdf-viewer {
@@ -85,6 +86,15 @@
             border: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             background: white;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
         }
         
         @media (max-width: 768px) {
@@ -112,9 +122,23 @@
         </div>
     </div>
     <div class="pdf-container">
-        <iframe class="pdf-viewer" src="taylor_diffusion_nft.pdf" type="application/pdf">
+        <div class="loading" id="loading">Loading PDF...</div>
+        <iframe class="pdf-viewer" id="pdfFrame" src="taylor_diffusion_nft.pdf" type="application/pdf" onload="document.getElementById('loading').style.display='none'">
             <p>Your browser does not support PDFs. <a href="taylor_diffusion_nft.pdf" download>Download the PDF</a> instead.</p>
         </iframe>
     </div>
+    <script>
+        // Hide loading indicator when PDF loads
+        document.getElementById('pdfFrame').addEventListener('load', function() {
+            var loading = document.getElementById('loading');
+            if (loading) loading.style.display = 'none';
+        });
+        
+        // Fallback: hide loading after 5 seconds even if PDF doesn't load
+        setTimeout(function() {
+            var loading = document.getElementById('loading');
+            if (loading) loading.style.display = 'none';
+        }, 5000);
+    </script>
 </body>
 </html>
