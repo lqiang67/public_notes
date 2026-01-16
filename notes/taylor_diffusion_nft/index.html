@@ -1,11 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Page Not Found</title>
-    <meta http-equiv="refresh" content="0; url=../../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiffusionNFT as Taylor Approximation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #24292e;
+            margin: 0;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .btn {
+            background: #0366d6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #0256c2;
+        }
+        
+        .btn-secondary {
+            background: #6a737d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .pdf-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #525252;
+            padding: 20px;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            background: white;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+            }
+            
+            .header h1 {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>This page has been removed. <a href="../../">Return to main page</a></p>
+    <div class="header">
+        <h1>DiffusionNFT as Taylor Approximation</h1>
+        <div class="header-actions">
+            <a href="taylor_diffusion_nft.pdf" class="btn btn-secondary" download>Download PDF</a>
+            <a href="https://github.com/lqiang67/public_notes/blob/main/notes/taylor_diffusion_nft/taylor_diffusion_nft.pdf" class="btn" target="_blank">View on GitHub</a>
+        </div>
+    </div>
+    <div class="pdf-container">
+        <div class="loading" id="loading">Loading PDF...</div>
+        <iframe class="pdf-viewer" id="pdfFrame" src="taylor_diffusion_nft.pdf#view=FitH" type="application/pdf" loading="lazy">
+            <p>Your browser does not support PDFs. <a href="taylor_diffusion_nft.pdf" download>Download the PDF</a> instead.</p>
+        </iframe>
+    </div>
+    <script>
+        // Hide loading indicator when PDF loads
+        var pdfFrame = document.getElementById('pdfFrame');
+        var loading = document.getElementById('loading');
+        
+        if (pdfFrame && loading) {
+            pdfFrame.addEventListener('load', function() {
+                loading.style.display = 'none';
+            });
+            
+            // Fallback: hide loading after 5 seconds
+            setTimeout(function() {
+                loading.style.display = 'none';
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
