@@ -49,6 +49,24 @@
         </iframe>
     </div>
     <script>
+        // Mobile compatibility: many mobile browsers (notably iOS Safari) don't allow
+        // reliable zoom/paging controls for PDFs inside iframes. Open the PDF directly.
+        (function() {
+            var pdfUrl = "density_ratio.pdf";
+            var isCoarsePointer = false;
+            try {
+                isCoarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+            } catch (e) {}
+
+            var ua = navigator.userAgent || "";
+            var isMobileUA = /Android|iPhone|iPad|iPod/i.test(ua);
+
+            if (isCoarsePointer || isMobileUA) {
+                window.location.replace(pdfUrl);
+                return;
+            }
+        })();
+
         // Hide loading indicator when PDF loads
         var pdfFrame = document.getElementById('pdfFrame');
         var loading = document.getElementById('loading');
