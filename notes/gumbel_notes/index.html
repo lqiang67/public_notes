@@ -12,79 +12,22 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f5f5;
-            display: flex;
-            flex-direction: column;
+            width: 100vw;
             height: 100vh;
             overflow: hidden;
-        }
-        
-        .header {
-            background: #fff;
-            border-bottom: 1px solid #e1e4e8;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-        
-        .header h1 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #24292e;
-            margin: 0;
-        }
-        
-        .header-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        .btn {
-            background: #0366d6;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.2s;
-        }
-        
-        .btn:hover {
-            background: #0256c2;
-        }
-        
-        .btn-secondary {
-            background: #6a737d;
-        }
-        
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-        
-        .pdf-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: #525252;
-            padding: 20px;
-            overflow: auto;
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 100%;
             position: relative;
         }
-        
+
         .pdf-viewer {
             width: 100%;
             height: 100%;
             border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             background: white;
         }
         
@@ -96,31 +39,9 @@
             color: white;
             font-size: 16px;
         }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 10px 15px;
-            }
-            
-            .header h1 {
-                font-size: 16px;
-            }
-            
-            .btn {
-                padding: 5px 10px;
-                font-size: 12px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>The Gumbel-Max Trick and Lehmann Family</h1>
-        <div class="header-actions">
-            <a href="gumbel_notes.pdf" class="btn btn-secondary" download>Download PDF</a>
-            <a href="https://github.com/lqiang67/public_notes/blob/main/notes/gumbel_notes/gumbel_notes.pdf" class="btn" target="_blank">View on GitHub</a>
-        </div>
-    </div>
     <div class="pdf-container">
         <div class="loading" id="loading">Loading PDF...</div>
         <iframe class="pdf-viewer" id="pdfFrame" src="gumbel_notes.pdf#view=FitH" type="application/pdf" loading="lazy">
